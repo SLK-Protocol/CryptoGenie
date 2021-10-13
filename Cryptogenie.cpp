@@ -17,14 +17,15 @@ void encode1(char s[300000], char r[300000])
 void decode1(char r[300000], char t[300000])
 {
     char cod;
-    int i,a=2,b=3,x;
+    int i,a=2,b=3,x,j;
     strcpy(t,r);
     for(i=0; i<strlen(r); i++)
     {
+        j=i%223;
         x=int (r[i]);
         while (x<0)
             x=x+256;
-        x=(x-32-b-i*i*i)*112;
+        x=(x-32-b-j*j*j)*112;
         while (x<0)
             x=x+223;
         cod=char(x%223+32);
