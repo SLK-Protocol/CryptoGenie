@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1634118532 source:e\proiecte dragos\cryptogenie\cryptogenie.cpp
+	<iostream>
+	<cstring>
+	<string>
+	<fstream>
+
