@@ -20,7 +20,7 @@ void rs(int a, int &fin)
     cin>>gp;
     cout<<'\n';
     fin=pow(gp,a);
-    fin=fin%5;
+    fin=fin%17;
     cout<<"===================== CRYPTOGENIE BY DKD =======================";
     cout<<'\n'<<'\n';
 }
