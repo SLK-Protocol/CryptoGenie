@@ -19,7 +19,14 @@ void rs(int a, int &fin)
     cout<<"Partner=";
     cin>>gp;
     cout<<'\n';
-    fin=pow(gp,a);
+
+    fin=1;
+    while (a!=0)
+    {
+        fin=(fin*gp)%p;
+        a--;
+    }
+
     fin=fin%17;
     cout<<"===================== CRYPTOGENIE BY DKD =======================";
     cout<<'\n'<<'\n';
@@ -747,5 +754,6 @@ int main()
             cout<<'\n';
         }
     }
+    cin.get();
     return 0;
 }
