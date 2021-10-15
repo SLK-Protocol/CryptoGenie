@@ -78,7 +78,7 @@ for(i=0;i<8;i++)
 
 
 int main()
-{ long long int a,fin,gl,k,u[101],encript[101],decript[101],men,P=1;
+{ long long int a,fin,gl,k,u[101],encript[102],decript[101],men,P=1;
    char s[300000],r[300000],t[300000];
    for(j=0;j<5;j++)
    {
@@ -89,7 +89,13 @@ int main()
       // cout<<v[k]<<" "<<k<<endl;
   // }
   for(k=0;k<=100;k++)
-    u[k]=v[k]*10+v[(k+1)];
+    u[k]=v[k]*10+v[(k+1)]+1;
+    for(k=0;k<=101;k++)
+        encript[k]=k;
+    for(k=1;k<=101;k++)
+    {
+
+    }
     //encript[0]=u[0];
   //  for(k=1;k<=100;k++)
    // {  encript[k]=u[k];
