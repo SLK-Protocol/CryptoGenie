@@ -19,16 +19,14 @@ void rs(int a, int &fin)
     cout<<"Partner=";
     cin>>gp;
     cout<<'\n';
-
     fin=1;
     while (a!=0)
     {
         fin=(fin*gp)%p;
         a--;
     }
-
     fin=fin%17;
-    cout<<"===================== CRYPTOGENIE BY DKD =======================";
+    cout<<"===================== CRYPTOGENIE BY SLK =======================";
     cout<<'\n'<<'\n';
 }
 void encode1(char s[300000], char r[300000])
@@ -528,11 +526,10 @@ void decode16 (char r[300000], char t[300000])
         t[i]=cod;
     }
 }
-
-
 int main()
 {
     char s[300000],r[300000],t[300000]="";
+    long long int y;
     int men,alg,a,fin;
     rs(a,fin);
     cout<<"1-Encode 2-Decode"<<'\n';
@@ -579,7 +576,6 @@ int main()
             encode5(s,r);
             cout<<"Encoded Text: "<<r;
             cout<<'\n';
-
         }
         if(fin==6)
         {
@@ -610,7 +606,6 @@ int main()
             encode10(s,r);
             cout<<"Encoded Text: "<<r;
             cout<<'\n';
-
         }
         if(fin==11)
         {
@@ -641,7 +636,6 @@ int main()
             encode15(s,r);
             cout<<"Encoded Text: "<<r;
             cout<<'\n';
-
         }
         if(fin==16)
         {
@@ -649,11 +643,9 @@ int main()
             cout<<"Encoded Text: "<<r;
             cout<<'\n';
         }
-
     }
     if(men==2)
     {
-
         if(fin==1)
         {
             decode1(s,r);
@@ -683,7 +675,6 @@ int main()
             decode5(s,r);
             cout<<"Decoded Text: "<<r;
             cout<<'\n';
-
         }
         if(fin==6)
         {
@@ -714,7 +705,6 @@ int main()
             decode10(s,r);
             cout<<"Decoded Text: "<<r;
             cout<<'\n';
-
         }
         if(fin==11)
         {
@@ -745,7 +735,6 @@ int main()
             decode15(s,r);
             cout<<"Decoded Text: "<<r;
             cout<<'\n';
-
         }
         if(fin==16)
         {
