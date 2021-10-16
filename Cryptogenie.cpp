@@ -78,48 +78,53 @@ void rs(long long int a, long long int &fin)
 }
 int main()
 {
-    long long int a,fin,gl,k,u[101],encrypt[102],decrypt[101],men,P=1;
+    long long int a,fin,gl,k,u[101],encrypt[102],decrypt[101],men,P=1,menu=1;
     char s[300000],r[300000],t[300000];
     for(j=0; j<5; j++)
     {
         rs(a,fin);
     }
-    for(k=0; k<=100; k++)
-        u[k]=v[k]*10+v[(k+1)]+1;
-    for(k=0; k<=101; k++)
-        encrypt[k]=k;
-    for(k=1; k<=101; k++)
-    {
-
-    }
-    cout<<"1-Encode 2-Decode";
+    cout<<"======================== PEER COMM ESTABLISHED ==========================";
     cout<<'\n'<<'\n';
     do
     {
-        cout<<"Option: ";
-        cin>>men;
+        for(k=0; k<=100; k++)
+            u[k]=v[k]*10+v[(k+1)]+1;
+        for(k=0; k<=101; k++)
+            encrypt[k]=k;
+        for(k=1; k<=101; k++)
+        {
+
+        }
+        cout<<"1-Encode 2-Decode";
+        cout<<'\n'<<'\n';
+        do
+        {
+            cout<<"Option: ";
+            cin>>men;
+        }
+        while(men<1 || men>2);
+        cout<<'\n';
+        cout<<"Give text: ";
+        cin.get();
+        cin.getline(s,300000);
+        cout<<'\n';
+        if(men==1)
+        {
+            cout<<"Encoded Text: ";
+            encode1(s,r);
+            cout<<r;
+        }
+        if (men==2)
+        {
+            cout<<"Decoded Text: ";
+            decode1(s,t);
+            cout<<t;
+        }
+        cout<<'\n'<<'\n';
+        cout<<"======================== SLK-PROTOCOL ==========================";
+        cout<<'\n'<<'\n';
     }
-    while(men<1 || men>2);
-    cout<<'\n';
-    cout<<"Give text: ";
-    cin.get();
-    cin.getline(s,300000);
-    cout<<'\n';
-    if(men==1)
-    {
-        cout<<"Encoded Text: ";
-        encode1(s,r);
-        cout<<r;
-    }
-    if (men==2)
-    {
-        cout<<"Decoded Text: ";
-        decode1(s,t);
-        cout<<t;
-    }
-    cout<<'\n'<<'\n';
-    cout<<"======================== SLK-PROTOCOL ==========================";
-    cout<<'\n';
-    cin.get();
+    while(menu);
     return 0;
 }
