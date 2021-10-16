@@ -4,7 +4,7 @@
 #include <fstream>
 #include <cmath>
 using namespace std;
-int v[110],j;
+int v[110],j,u[101];
 void encode1(char s[300000], char r[300000])
 {
     char cod;
@@ -12,19 +12,25 @@ void encode1(char s[300000], char r[300000])
     strcpy(r,s);
     for(i=0; i<strlen(s); i++)
     {
-        w=(int(s[i])%80);
-        cod=char(int(s[i])+v[i%8]);
+
+        cod=char(((int(s[i])-31)*u[i%80])%223+31);
         r[i]=cod;
     }
 }
 void decode1(char r[300000], char t[300000])
 {
     char cod;
-    int i;
+    int i,a,simetric,x;
     strcpy (t,r);
+
     for(i=0; i<strlen(r); i++)
-    {
-        cod=char(int(r[i])-v[i%8]);
+    {   while ((u[i%80]*simetric)%223 != 1)
+        simetric++;
+        x=int(r[i]);
+        while (x<0)
+            x=x+256;
+        x=x%256;
+        cod=char((int(x-31)*simetric)%223+31);
         t[i]=cod;
     }
 }
@@ -78,9 +84,9 @@ void rs(long long int a, long long int &fin)
 }
 int main()
 {
-    long long int a,fin,gl,k,u[101],encrypt[102],decrypt[101],men,P=1,menu=1;
+    long long int a,fin,gl,k,encrypt[102],decrypt[101],men,P=1,menu=1;
     char s[300000],r[300000],t[300000];
-    for(j=0; j<5; j++)
+    for(j=0; j<10; j++)
     {
         rs(a,fin);
     }
@@ -89,13 +95,8 @@ int main()
     do
     {
         for(k=0; k<=100; k++)
-            u[k]=v[k]*10+v[(k+1)]+1;
-        for(k=0; k<=101; k++)
-            encrypt[k]=k;
-        for(k=1; k<=101; k++)
-        {
+            u[k]=v[k]*10+v[(k+1)]+2;
 
-        }
         cout<<"1-Encode 2-Decode";
         cout<<'\n'<<'\n';
         do
