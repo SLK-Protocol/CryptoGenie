@@ -120,5 +120,6 @@ int main()
     cout<<'\n'<<'\n';
     cout<<"======================== SLK-PROTOCOL ==========================";
     cout<<'\n';
+    cin.get();
     return 0;
 }
