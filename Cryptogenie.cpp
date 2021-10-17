@@ -5,6 +5,7 @@
 #include <cmath>
 using namespace std;
 int v[110],j,u[101];
+
 void encode1(char s[300000], char r[300000])
 {
     char cod;
@@ -97,14 +98,14 @@ int main()
         for(k=0; k<=100; k++)
             u[k]=v[k]*10+v[(k+1)]+2;
 
-        cout<<"1-Encode 2-Decode";
+        cout<<"1-Encode 2-Decode 3-Generate a new key";
         cout<<'\n'<<'\n';
         do
         {
             cout<<"Option: ";
             cin>>men;
         }
-        while(men<1 || men>2);
+        while(men<1 || men>3);
         cout<<'\n';
         cout<<"Give text: ";
         cin.get();
@@ -121,6 +122,40 @@ int main()
             cout<<"Decoded Text: ";
             decode1(s,t);
             cout<<t;
+        }
+        if (men == 3)
+        {
+            for (k = 0; k <= 100; k++)
+                u[k] = v[k] * 10 + v[(k + 1)] + 2;
+            for (j = 0; j < 10; j++)
+            {
+                rs(a, fin);
+            }
+
+            cout << "1-Encode 2-Decode";
+            cout << '\n' << '\n';
+            do
+            {
+                cout << "Option: ";
+                cin >> men;
+            } while (men < 1 || men>2);
+            cout << '\n';
+            cout << "Give text: ";
+            cin.get();
+            cin.getline(s, 300000);
+            cout << '\n';
+            if (men == 1)
+            {
+                cout << "Encoded Text: ";
+                encode1(s, r);
+                cout << r;
+            }
+            if (men == 2)
+            {
+                cout << "Decoded Text: ";
+                decode1(s, t);
+                cout << t;
+            }
         }
         cout<<'\n'<<'\n';
         cout<<"======================== SLK-PROTOCOL ==========================";
