@@ -4,16 +4,20 @@
 #include <fstream>
 #include <cmath>
 using namespace std;
-int v[110],j,u[101];
+int v[110],j,u[101],x;
 void encode1(char s[300000], char r[300000])
 {
     char cod;
     int i,w;
     strcpy(r,s);
     for(i=0; i<strlen(s); i++)
-    {
-        cod=char(((int(s[i])-31)*u[i%80])%223+31);
+    {x=int(s[i]);
+        while (x<0)
+            x=x+256;
+            x=x%256;
+        cod=char(((x-31)*u[i%80])%223+31);
         r[i]=cod;
+
     }
 }
 void decode1(char r[300000], char t[300000])
@@ -32,6 +36,7 @@ void decode1(char r[300000], char t[300000])
         x=x%256;
         cod=char((int(x-31)*simetric)%223+31);
         t[i]=cod;
+
     }
 }
 void rs(long long int a, long long int &fin)
