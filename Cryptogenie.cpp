@@ -108,8 +108,6 @@ int main()
         {
             cout<<"Option: ";
             cin>>men;
-            cin.clear();
-            cin.ignore(10000,'\n');
         }
         while(men<1 || men>3);
         if(men==1)
