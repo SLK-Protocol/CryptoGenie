@@ -83,7 +83,7 @@ void rs(long long int a, long long int &fin)
     fin=fin+100000000;
     for(i=0; i<8; i++)
     {
-        v[j*8+i]=fin%10;
+        v[i*8+j]=fin%10;
         fin=fin/10;
     }
 }
