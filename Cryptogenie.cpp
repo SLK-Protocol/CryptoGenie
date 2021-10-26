@@ -19,7 +19,7 @@ int impartire (int a, int b)
 }
 void inversa(int a[100][100])
 {
-    int i,j,y,k,h,S,q;
+    int i,j,y,k,h,S,q,l ,schimb,exista;
     for(i=0;i<=80;i++)
 {
     t[i]=i+1;
@@ -28,7 +28,7 @@ void inversa(int a[100][100])
     {
         for(j=1; j<=n; j++)
         {
-           a[i][j]=(i+j-1)%n;
+           a[i][j]=(i*i+j*j-1)%n;
         }
     }
     for(i=1; i<=n; i++)
@@ -55,20 +55,41 @@ void inversa(int a[100][100])
         }
     }
     for(i=1; i<=n-1; i++)
-    {
+    {   exista=0;
         if(a[i][i] == 0)
         {
-            cout<<"Mathematical Error!"<<i<<endl;
+          l=i+1;
+          while (l<=n && exista==0)
+          {
+              if (a[l][i]==0)
+                l++;
+              else
+              {
+               exista=1;
+               for (j=1;j<=2*n;j++)
+               {
+                   schimb=a[i][j];
+                   a[i][j]=a[l][j];
+                   a[l][j]=schimb;
+               }
+              }
+          }
+          if( exista==0)
+          {
+           cout<<"Neinversabila"<<i<<endl;
             for(i=1; i<=n; i++)
     {
         for(j=1; j<=n; j++)
         {
 
-           cout<<a[i][j]<<" ";
+         cout<<a[i][j]<<" ";
         }
         cout<<endl;
     }
-           exit(0);
+
+           exit (0);
+          }
+
         }
         for(j=i+1; j<=n; j++)
         {
