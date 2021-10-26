@@ -21,15 +21,15 @@ int impartire (int a, int b)
 void inversa(int a[200][200])
 {
     int i,j,y,k,h,S,q,l ,schimb,exista;
-    for(i=0;i<=80;i++)
+    for(i=0;i<=n;i++)
 {
-    t[i]=i+1;
+    t[i]=(12*i)%223;
 }
     for(i=1; i<=n; i++)
     {
         for(j=1; j<=n; j++)
         {
-           a[i][j]=(i+j-1)%n;
+           a[i][j]=t[(i+j-1)%n];
         }
     }
     for(i=1; i<=n; i++)
