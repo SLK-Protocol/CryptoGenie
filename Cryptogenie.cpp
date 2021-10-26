@@ -1,145 +1,95 @@
-#include <iostream>
-#include <cstring>
-#include <string>
-#include <fstream>
-#include <cmath>
+#include<iostream>
+#include<iomanip>
+#include<math.h>
+#include<stdlib.h>
+
 using namespace std;
-int v[110],j,u[101],x;
-void encode1(char s[300000], char r[300000])
+int n;
+int a[100][100],v[100];
+int impartire (int a, int b)
 {
-    char cod;
-    int i,w;
-    strcpy(r,s);
-    for(i=0; i<strlen(s); i++)
-    {x=int(s[i]);
-        while (x<0)
-            x=x+256;
-            x=x%256;
-        cod=char(((x-31)*u[i%80])%223+31);
-        r[i]=cod;
+    int x=1;
+    while (b*x%223!=a)
+    {
+        x++;
+    }
+    return x;
+    cout<<x;
+}
+void inversa(int a[100][100])
+{
+    int i,j,y,k,h;
+    for(i=1; i<=n; i++)
+    {
+        for(j=1; j<=n; j++)
+        {
+            cout<<"a["<< i<<"]"<< j<<"]= ";
+            cin>>a[i][j];
+        }
+    }
+    for(i=1; i<=n; i++)
+    {
+        for(j=1; j<=n; j++)
+        {
+            if(i==j)
+            {
+                a[i][j+n] = 1;
+            }
+            else
+            {
+                a[i][j+n] = 0;
+            }
+        }
+    }
+    for(i=1; i<=n-1; i++)
+    {
+        if(a[i][i] == 0)
+        {
+            cout<<"Mathematical Error!";
+            exit(0);
+        }
+        for(j=i+1; j<=n; j++)
+        {
+            y = impartire(a[j][i],a[i][i]);
 
+            for(k=1; k<=2*n; k++)
+            {
+                a[j][k] = (a[j][k] - y*a[i][k]+223*223)%223;
+            }
+        }
+    }
+    for(i=1; i<=n; i++)
+    {
+        y=impartire(1,a[i][i]);
+        for(j=1; j<=2*n; j++)
+        {
+            a[i][j] =a[i][j]*y%223;
+        }
+    }
+    for (i=n-1; i>=1; i--)
+    {  for(h=i+1;h<=n;h++)
+            {
+               v[h]=a[i][h];
+            }
+        for(j=1; j<=2*n; j++)
+        {
+            for(h=i+1;h<=n;h++)
+            {
+               a[i][j]=(a[i][j]-a[h][j]*v[h]+223*223)%223 ;
+            }
+        }
+    }
+    for(i=1; i<=n; i++)
+    {
+        for(j=1; j<=2*n; j++)
+        {
+            cout<<a[i][j]<<" ";
+        }
     }
 }
-void decode1(char r[300000], char t[300000])
-{
-    char cod;
-    int i,a,simetric,x;
-    strcpy (t,r);
-
-    for(i=0; i<strlen(r); i++)
+    int main ()
     {
-        while((u[i%80]*simetric)%223!=1)
-            simetric++;
-        x=int(r[i]);
-        while (x<0)
-            x=x+256;
-        x=x%256;
-        cod=char((int(x-31)*simetric)%223+31);
-        t[i]=cod;
-
+        cin>>n;
+        inversa (a);
+        return 0;
     }
-}
-void rs(long long int a, long long int &fin)
-{
-    long long int g=5,p=100000007,gl,gp,r=0,c=0,x=1,i,y=1,z=1,m,n,t;
-    cout<<"===================== REMOTE COMMUNICATION =====================";
-    cout<<'\n'<<'\n';
-    cout<<"Local=";
-    cin>>a;
-    cout<<'\n';
-    m=a/10000;
-    t=a%10000;
-    for(i=0; i<m; i++)
-    {
-        x=(x*24802769)%p;
-    }
-    for (i=0; i<t; i++)
-    {
-        z=(z*5)%p;
-    }
-    gl=(x*z)%p;
-    cout<<"Give partner= "<<gl;
-    cout<<'\n'<<'\n';
-    x=1;
-    y=1;
-    z=1;
-    cout<<"Partner= ";
-    cin>>gp;
-    cout<<'\n';
-    for(i=0; i<10000; i++)
-    {
-        x=(x*gp)%p;
-    }
-    for(i=0; i<m; i++)
-    {
-        y=(y*x)%p;
-    }
-    for (i=0; i<t; i++)
-    {
-        z=(z*gp)%p;
-    }
-    fin=(y*z)%p;
-    fin=fin%100000000;
-    fin=fin+100000000;
-    for(i=0; i<8; i++)
-    {
-        v[i*8+j]=fin%10;
-        fin=fin/10;
-    }
-}
-int main()
-{
-    long long int a,fin,gl,k,encrypt[102],decrypt[101],men,P=1,menu=1;
-    char s[300000],r[300000],t[300000];
-    for(j=0; j<10; j++)
-    {
-        rs(a,fin);
-    }
-    cout<<"======================== PEER COMM ESTABLISHED ==========================";
-    cout<<'\n'<<'\n';
-    do
-    {
-        for(k=0; k<=100; k++)
-            u[k]=v[k]*10+v[(k+1)]+2;
-
-        cout<<"1-Encode 2-Decode 3-New Key";
-        cout<<'\n'<<'\n';
-        do
-        {
-            cout<<"Option: ";
-            cin>>men;
-        }
-        while(men<1 || men>3);
-        if(men==1)
-        {
-            cout<<'\n';
-            cout<<"Give text: ";
-            cin.get();
-            cin.getline(s,300000);
-            cout<<'\n';
-            cout<<"Encoded Text: ";
-            encode1(s,r);
-            cout<<r;
-        }
-        if (men==2)
-        {
-            cout<<'\n';
-            cout<<"Give text: ";
-            cin.get();
-            cin.getline(s,300000);
-            cout<<'\n';
-            cout<<"Decoded Text: ";
-            decode1(s,t);
-            cout<<t;
-        }
-        if (men==3)
-        {
-            main();
-        }
-        cout<<'\n'<<'\n';
-        cout<<"======================== SLK-PROTOCOL ==========================";
-        cout<<'\n'<<'\n';
-    }
-    while(menu);
-    return 0;
-}
