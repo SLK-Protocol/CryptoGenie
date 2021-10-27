@@ -5,7 +5,7 @@
 
 using namespace std;
 int n;
-int a[200][200],b[200][200],c[200][200],d[200][200],v[200],t[81],o;
+int a[400][400],b[400][400],c[400][400],d[400][400],v[400],t[81],o;
 
 int impartire (int a, int b)
 {
@@ -17,27 +17,26 @@ int impartire (int a, int b)
     return x;
     cout<<x;
 }
-
-void inversa(int a[200][200])
+void inversa(int a[400][400])
 {
-    int i,j,y,k,h,S,q,l ,schimb,exista;
-    for(i=0;i<=n;i++)
-{
-    t[i]=(12*i)%223;
-}
+    int i,j,y,k,h,S,q,l,schimb,exista;
+    for(i=0; i<=n; i++)
+    {
+        t[i]=(12*i)%223;
+    }
     for(i=1; i<=n; i++)
     {
         for(j=1; j<=n; j++)
         {
-           a[i][j]=t[(i+j-1)%n];
+            a[i][j]=t[(i+j-1)%n];
         }
     }
     for(i=1; i<=n; i++)
     {
         for(j=1; j<=n; j++)
         {
-           b[i][j]=a[i][j];
-          // cout<<b[i][j]<<" ";
+            b[i][j]=a[i][j];
+            // cout<<b[i][j]<<" ";
         }
         //cout<<endl;
     }
@@ -56,32 +55,30 @@ void inversa(int a[200][200])
         }
     }
     for(i=1; i<=n-1; i++)
-    {   exista=2;
+    {
+        exista=2;
         if(a[i][i] == 0)
-        { exista=0;
-          l=i;
-          while (l<=n && exista==0)
-          {
-              if (a[l][i]==0)
-                l++;
-              else
-              {
-               exista=1;
-               for (j=1;j<=2*n;j++)
-               {
-                   schimb=a[i][j];
-                   a[i][j]=a[l][j];
-                   a[l][j]=schimb; //schimbam linia proasta cu una buna
+        {
+            exista=0;
+            l=i;
+            while (l<=n && exista==0)
+            {
+                if (a[l][i]==0)
+                    l++;
+                else
+                {
+                    exista=1;
+                    for (j=1; j<=2*n; j++)
+                    {
+                        schimb=a[i][j];
+                        a[i][j]=a[l][j];
+                        a[l][j]=schimb; //schimbam linia proasta cu una buna
 
-               }
-              }
-          }
-          if( exista==0)
-           cout<<endl<<"Neinversabila"<<i<<endl;
-
-
-
-
+                    }
+                }
+            }
+            if( exista==0)
+                cout<<endl<<"Neinversabila"<<i<<endl;
         }
         for(j=i+1; j<=n; j++)
         {
@@ -94,8 +91,6 @@ void inversa(int a[200][200])
         }
 
     }
-
-
     for(i=1; i<=n; i++)
     {
         y=impartire(1,a[i][i]);
@@ -105,15 +100,16 @@ void inversa(int a[200][200])
         }
     }
     for (i=n-1; i>=1; i--)
-    {  for(h=i+1;h<=n;h++)
-            {
-               v[h]=a[i][h];
-            }
+    {
+        for(h=i+1; h<=n; h++)
+        {
+            v[h]=a[i][h];
+        }
         for(j=1; j<=2*n; j++)
         {
-            for(h=i+1;h<=n;h++)
+            for(h=i+1; h<=n; h++)
             {
-               a[i][j]=(a[i][j]-a[h][j]*v[h]+223*223)%223 ;
+                a[i][j]=(a[i][j]-a[h][j]*v[h]+223*223)%223 ;
             }
         }
     }
@@ -125,11 +121,12 @@ void inversa(int a[200][200])
             //cout<<c[i][j]<<" ";
         }
         //cout<<endl;
-    } for(i=1; i<=n; i++)
+    }
+    for(i=1; i<=n; i++)
     {
         for(j=1; j<=2*n; j++)
         {
-          //  cout<<a[i][j]<<" ";
+            //  cout<<a[i][j]<<" ";
         }
     }
     //cout<<endl;
@@ -138,9 +135,8 @@ void inversa(int a[200][200])
         for(j=1; j<=n; j++)
         {
             d[i][j]=0;
-            for(k=1;k<=n;k++)
+            for(k=1; k<=n; k++)
                 d[i][j]=(d[i][j]+b[i][k]*c[k][j])%223;
-
         }
     }
     for(i=1; i<=n; i++)
@@ -149,13 +145,13 @@ void inversa(int a[200][200])
         {
             cout<<d[i][j]<<" ";
         }
-        cout<<endl;
+        cout<<'\n';
     }
 }
-    int main ()
-    {
-        cin>>n;
-        inversa (a);
+int main ()
+{
+    cin>>n;
+    inversa(a);
 
-        return 0;
-    }
+    return 0;
+}
